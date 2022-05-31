@@ -15,4 +15,8 @@ public interface MoneService {
 	public Integer insert(String mid, Integer pno);
 	
 	public Integer delete(String mid, Integer pno);
+	
+	public Integer paylogInsert(String mid, Integer price);
+	
+	public Integer paylogDelete(String mid);
 }

@@ -19,4 +19,8 @@ public interface MemberMapper {
 	public Integer insert(Map data);
 	
 	public Integer delete(Map data);
+	
+	public Integer paylogInsert(Map data);
+	
+	public Integer paylogDelete(String mid);
 }

@@ -43,6 +43,16 @@ public class MoneServiceImpl implements MoneService{
 		return memberMapper.delete(data);
 	}
 	
+	public Integer paylogDelete(String mid) {
+		return memberMapper.paylogDelete(mid);
+	}
+	
+	public Integer paylogInsert(String mid, Integer price) {
+		Map data = new HashMap();
+		data.put("mid", mid);
+		data.put("price", price);
+		return memberMapper.paylogInsert(data);
+	}
 	public List<ShopCartVO> shopcartList(String mid) {
 		return memberMapper.shopcartList(mid);
 	}

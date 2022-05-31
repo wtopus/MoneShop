@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.JsonObject;
+import com.org.domain.MemberVO;
+import com.org.domain.ShopCartVO;
 import com.org.service.MoneService;
 
 import lombok.AllArgsConstructor;
@@ -29,9 +33,11 @@ public class ShopCartController {
 	@PostMapping(value="/cart", consumes = MediaType.APPLICATION_JSON_VALUE)
 	// mid pno¹Þ°í -> insert
 	public ResponseEntity<String> insert(@RequestBody Map<String,String> param){
+		//log.info( "testes" + mid + pno);
+		
 		log.info( "testes" + param.get("mid") + param.get("pno"));
-		int result = service.insert(param.get("mid"), Integer.parseInt(param.get("pno")));
-		log.info("cartAdd : " +result);
+		//int result = service.insert(param.get("mid"), Integer.parseInt(param.get("pno")));
+		//log.info("cartAdd : " +result);
 		JsonObject obj = new JsonObject();
 		obj.addProperty("result", "success");
 		return new ResponseEntity<>(obj.toString(), HttpStatus.OK);
