@@ -9,5 +9,11 @@
 		select * from member where mid=#{mid} and mpw=#{mpw}
 	</select>
 	
+	<select id="isEmpty" resultType="com.org.domain.ShopCartVO">
+		select * from shopcart where mno= (select mno from member where mid=#{mid} and pno=#{pno};
+	</select>
 	
+	<select id="shopcartList" resultType="com.org.domain.ShopCartVO">
+		 select * from shopcart where  mno= (select mno from member where mid=#{mid})
+	</select>
 </mapper>
