@@ -4,27 +4,31 @@
 	<select id="getList" resultType="com.org.domain.MemberVO">
 		select * from member
 	</select>
-	
+
 	<select id="isLogin" resultType="com.org.domain.MemberVO">
 		select * from member where mid=#{mid} and mpw=#{mpw}
 	</select>
-	
+
 	<select id="isEmpty" parameterType="hashMap" resultType="com.org.domain.ShopCartVO">
 		select * from shopcart where mno= (select mno from member where mid=#{mid} and pno=#{pno} )
 	</select>
-	
+
 	<select id="shopcartList" resultType="com.org.domain.ShopCartVO">
-		 select * from shopcart where  mno= (select mno from member where mid=#{mid})
+		select * from shopcart where  mno= (select mno from member where mid=#{mid})
 	</select>
-	
+
 	<insert id="insert" >
 		insert into shopcart(mno, pno, pcount) values ((select mno from member where mid=#{mid}), #{pno}, 1)
 	</insert>
+<<<<<<< HEAD
 	
 	<insert id="paylogInsert" >
 		insert into paylog(mid, price) values (#{mid}, #{price})
 	</insert>
 	
+=======
+
+>>>>>>> 7490575f057524cb8428066511f4718e111121df
 	<delete id="delete">
 		delete from shopcart where mno=(select mno from member where mid=#{mid}) and pno=#{pno}
 	</delete>
