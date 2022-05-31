@@ -1,7 +1,9 @@
 package com.org.service;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -20,8 +22,18 @@ public class MoneServiceImpl implements MoneService{
 		return memberMapper.isLogin(memberVO);
 	}
 	
-	public boolean isEmpty(String mid, Integer pno) {
-		return memberMapper.isEmpty(mid, pno);
+	public ShopCartVO isEmpty(String mid, Integer pno) {
+		Map data = new HashMap();
+		data.put("mid", mid);
+		data.put("pno", pno);
+		return memberMapper.isEmpty(data);
+	}
+	
+	public Integer insert(String mid, Integer pno) {
+		Map data = new HashMap();
+		data.put("mid", mid);
+		data.put("pno", pno);
+		return memberMapper.insert(data);
 	}
 	
 	public List<ShopCartVO> shopcartList(String mid) {

@@ -1,8 +1,7 @@
 package com.org.mapper;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Select;
+import java.util.Map;
 
 import com.org.domain.MemberVO;
 import com.org.domain.ShopCartVO;
@@ -13,7 +12,9 @@ public interface MemberMapper {
 	public List<MemberVO> getList();
 	public MemberVO isLogin(MemberVO memberVO);
 	
-	public boolean isEmpty(String mid, Integer pno);
+	public ShopCartVO isEmpty(Map data);
 	
 	public List<ShopCartVO> shopcartList(String mid);
+	
+	public Integer insert(Map data);
 }

@@ -8,7 +8,9 @@ import com.org.domain.ShopCartVO;
 public interface MoneService {
 	public MemberVO isLogin(MemberVO memberVO);
 	
-	public boolean isEmpty(String mid, Integer pno);
+	public ShopCartVO isEmpty(String mid, Integer pno);
 	
 	public List<ShopCartVO> shopcartList(String mid);
+	
+	public Integer insert(String mid, Integer pno);
 }
