@@ -35,16 +35,15 @@ export default function ShoppingCart() {
 
   const handleDelete = (itemId) => {
     axios
-      .post("http://localhost:9001/deleteOne", {
-        method: "POST",
-        body: {
-          mid: user.id,
+      .delete("http://localhost:8081/mone/cart", {
+        data: {
+          mid: user.userId,
           pno: itemId,
         },
       })
       .then((resp) => {
         const { result } = resp.data;
-        if (result !== "-1+") {
+        if (result !== "fail") {
           setCheckedItems(checkedItems.filter((el) => el !== itemId));
           dispatch(removeFromCart(itemId));
         }
