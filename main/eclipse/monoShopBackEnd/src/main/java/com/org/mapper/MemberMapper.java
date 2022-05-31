@@ -17,4 +17,6 @@ public interface MemberMapper {
 	public List<ShopCartVO> shopcartList(String mid);
 	
 	public Integer insert(Map data);
+	
+	public Integer delete(Map data);
 }

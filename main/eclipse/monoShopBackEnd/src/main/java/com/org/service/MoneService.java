@@ -13,4 +13,6 @@ public interface MoneService {
 	public List<ShopCartVO> shopcartList(String mid);
 	
 	public Integer insert(String mid, Integer pno);
+	
+	public Integer delete(String mid, Integer pno);
 }

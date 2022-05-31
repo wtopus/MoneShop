@@ -31,6 +31,15 @@ public class ServletConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/resources/**")
 				.addResourceLocations("/resources/");
 	}
-
+	
+	
+	  @Bean(name="multipartResolver") public CommonsMultipartResolver getResolver() throws IOException{ 
+	  CommonsMultipartResolver resolver = new
+	  CommonsMultipartResolver(); resolver.setMaxUploadSize(1024*1024*10);
+	  resolver.setMaxUploadSizePerFile(1024*1024*2);
+	  resolver.setMaxInMemorySize(1024*1024); // 디스크에 저장하지 않고 메모리에 유지하도록 허용하는 바이트단위의 최대 용량을 설정 
+	  resolver.setUploadTempDir(new FileSystemResource("C:/Users/BIT/Desktop/multipartUpload"));
+	  resolver.setDefaultEncoding("utf-8"); return resolver; 
+	  }
 	 
 }

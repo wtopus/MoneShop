@@ -21,4 +21,7 @@
 		insert into shopcart(mno, pno, pcount) values ((select mno from member where mid=#{mid}), #{pno}, 1)
 	</insert>
 
+	<delete id="delete">
+		delete from shopcart where mno=(select mno from member where mid=#{mid}) and pno=#{pno}
+	</delete>
 </mapper>
