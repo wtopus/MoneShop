@@ -9,19 +9,15 @@ export default function OrderSummary({ totalQty, total, cartItems }) {
   const dispatch = useDispatch();
   const handleOrder = (orders, totalPrice) => {
     axios
-      .post("http://localhost:9001/payment", {
-        method: "POST",
-        body: {
-          mid: user.id,
+      .delete("http://localhost:8081/mone/paylog", {
+        data: {
+          mid: user.userId,
           price: totalPrice,
-        },
-        headers: {
-          "Content-Type": "application/json",
         },
       })
       .then((resp) => {
         const { result } = resp.data;
-        if (result !== "-1+") {
+        if (result === "success") {
           dispatch(setCart([]));
           dispatch(notify(`${totalQty}개의 상품을 구매했습니다.`));
         }
