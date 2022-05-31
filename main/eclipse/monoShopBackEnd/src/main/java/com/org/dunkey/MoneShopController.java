@@ -30,10 +30,10 @@ public class MoneShopController {
 	private MoneService service;
 	
 	@CrossOrigin(origins = "*" )
-	@PostMapping(value="/new", consumes="application/json", produces= {MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value="/member")
 	public ResponseEntity<MemberVO> create(MemberVO memberVO){
-		log.info("param : " + memberVO.getMid() + memberVO.getMpw());
-		return new ResponseEntity<>(service.isLogin(memberVO), HttpStatus.OK);
+		MemberVO memberVO_ = service.isLogin(memberVO);
+		return memberVO_ == null ? new ResponseEntity<>(service.isLogin(memberVO), HttpStatus.ACCEPTED) : new ResponseEntity<>(service.isLogin(memberVO), HttpStatus.OK);
 	}
 	
 }
