@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +28,7 @@ public class ShopCartController {
 	@CrossOrigin(origins = "*" )
 	@PostMapping(value="/cart", consumes = MediaType.APPLICATION_JSON_VALUE)
 	// mid pno받고 -> insert
-	public ResponseEntity<String> create(@RequestBody Map<String,String> param){
+	public ResponseEntity<String> insert(@RequestBody Map<String,String> param){
 		log.info( "testes" + param.get("mid") + param.get("pno"));
 		int result = service.insert(param.get("mid"), Integer.parseInt(param.get("pno")));
 		log.info("cartAdd : " +result);
@@ -35,6 +36,23 @@ public class ShopCartController {
 		obj.addProperty("result", "success");
 		return new ResponseEntity<>(obj.toString(), HttpStatus.OK);
 	}
+	
+	@CrossOrigin(origins = "*" )
+	@DeleteMapping(value="/cart", consumes = MediaType.APPLICATION_JSON_VALUE)
+	// mid pno받고 -> insert
+	public ResponseEntity<String> delete(@RequestBody Map<String,String> param){
+		log.info( "testes" + param.get("mid") + param.get("pno"));
+		int result = service.delete(param.get("mid"), Integer.parseInt(param.get("pno")));
+		log.info("cartdelete : " +result);
+		JsonObject obj = new JsonObject();
+		if(result == 1 ) {
+			obj.addProperty("result", "success");
+		}else {
+			obj.addProperty("result", "fail");
+		}
+		return new ResponseEntity<>(obj.toString(), HttpStatus.OK);
+	}
+	
 	
 //	@CrossOrigin(origins = "*" )
 //	@PostMapping(value="/cart", consumes = MediaType.APPLICATION_JSON_VALUE)

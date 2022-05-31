@@ -36,6 +36,13 @@ public class MoneServiceImpl implements MoneService{
 		return memberMapper.insert(data);
 	}
 	
+	public Integer delete(String mid, Integer pno) {
+		Map data = new HashMap();
+		data.put("mid", mid);
+		data.put("pno", pno);
+		return memberMapper.delete(data);
+	}
+	
 	public List<ShopCartVO> shopcartList(String mid) {
 		return memberMapper.shopcartList(mid);
 	}

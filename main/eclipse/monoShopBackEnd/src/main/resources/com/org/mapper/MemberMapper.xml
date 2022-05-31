@@ -9,11 +9,19 @@
 		select * from member where mid=#{mid} and mpw=#{mpw}
 	</select>
 	
-	<select id="isEmpty" resultType="com.org.domain.ShopCartVO">
-		select * from shopcart where mno= (select mno from member where mid=#{mid} and pno=#{pno};
+	<select id="isEmpty" parameterType="hashMap" resultType="com.org.domain.ShopCartVO">
+		select * from shopcart where mno= (select mno from member where mid=#{mid} and pno=#{pno} )
 	</select>
 	
 	<select id="shopcartList" resultType="com.org.domain.ShopCartVO">
 		 select * from shopcart where  mno= (select mno from member where mid=#{mid})
 	</select>
+	
+	<insert id="insert" >
+		insert into shopcart(mno, pno, pcount) values ((select mno from member where mid=#{mid}), #{pno}, 1)
+	</insert>
+	
+	<delete id="delete">
+		delete from shopcart where mno=(select mno from member where mid=#{mid}) and pno=#{pno}
+	</delete>
 </mapper>
