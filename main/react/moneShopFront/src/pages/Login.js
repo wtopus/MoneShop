@@ -13,15 +13,7 @@ export default function Login() {
   const login = () => {
     console.log(id, pw + "rerer")
     axios
-      .post("http://localhost:8080/dunkey/mone/new", null, {
-        params: {
-          mid: id,
-          mpw: pw,
-        },
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      .get(`http://localhost:8082/dunkey/mone/member?mid=${id}&mpw=${pw}`)
       .then((resp) => {
         console.log(JSON.stringify(resp));
         const { result } = resp.data;
