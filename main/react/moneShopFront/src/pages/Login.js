@@ -11,9 +11,9 @@ export default function Login() {
   let pw = "";
 
   const login = () => {
-    console.log(id, pw + "rerer")
+    console.log(id, pw + "rerer");
     axios
-      .post("http://localhost:8080/dunkey/mone/new", null, {
+      .post("http://localhost:8081ㄴ//mone/new", null, {
         params: {
           mid: id,
           mpw: pw,
@@ -23,6 +23,7 @@ export default function Login() {
         },
       })
       .then((resp) => {
+        console.log(resp);
         console.log(JSON.stringify(resp));
         const { result } = resp.data;
 
