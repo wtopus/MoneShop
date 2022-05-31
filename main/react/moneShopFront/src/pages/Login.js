@@ -13,7 +13,7 @@ export default function Login() {
   const login = () => {
     console.log(id, pw + "rerer");
     axios
-      .post("http://localhost:8081ㄴ//mone/new", null, {
+      .post("http://localhost:8081//mone/new", null, {
         params: {
           mid: id,
           mpw: pw,
