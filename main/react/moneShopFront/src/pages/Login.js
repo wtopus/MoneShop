@@ -11,33 +11,16 @@ export default function Login() {
   let pw = "";
 
   const login = () => {
-    console.log(id, pw + "rerer");
     axios
-      .post("http://localhost:8081//mone/new", null, {
-        params: {
-          mid: id,
-          mpw: pw,
-        },
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      .get(`http://localhost:8081/mone/member?mid=${id}&mpw=${pw}`)
       .then((resp) => {
-        console.log(resp);
-        console.log(JSON.stringify(resp));
-        const { result } = resp.data;
-
-        if (result !== "-1+") {
+        const result = resp.data;
+        if (result !== null) {
+          let user = result[0];
+          let cartList = result[1];
           dispatch(setLogin(true));
-          dispatch(setUser(id));
-          dispatch(
-            setCart(
-              result
-                .substring(0, result.length)
-                .split("+")
-                .map((el) => Number(el))
-            )
-          );
+          dispatch(setUser(user.mid));
+          dispatch(setCart(cartList.map((el) => el.pno)));
           dispatch(notify(`${id}님 환영합니다.`));
         } else {
           dispatch(notify(`잘못된 정보를 입력했습니다.`));
