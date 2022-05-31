@@ -5,8 +5,7 @@ import lombok.Data;
 
 @Data
 public class ShopCartVO {
+	Integer mno;
 	Integer pno;
-	String pname;
-	Integer price;
-	String pinfo;
+	String pcount;
 }

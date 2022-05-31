@@ -1,5 +1,6 @@
 package com.org.dunkey;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.org.domain.MemberVO;
+import com.org.domain.ShopCartVO;
 import com.org.service.MoneService;
 
 import lombok.AllArgsConstructor;
@@ -26,14 +28,19 @@ import lombok.extern.log4j.Log4j;
 @RestController
 @Log4j
 @AllArgsConstructor
-public class MoneShopController {
+public class LoginController {
 	private MoneService service;
 	
 	@CrossOrigin(origins = "*" )
 	@GetMapping(value="/member")
-	public ResponseEntity<MemberVO> create(MemberVO memberVO){
+	public ResponseEntity<List> create(MemberVO memberVO){
+		List list = new ArrayList<>();
 		MemberVO memberVO_ = service.isLogin(memberVO);
-		return memberVO_ == null ? new ResponseEntity<>(service.isLogin(memberVO), HttpStatus.ACCEPTED) : new ResponseEntity<>(service.isLogin(memberVO), HttpStatus.OK);
+		log.info(memberVO);
+		log.info(service.shopcartList(memberVO.getMid()));
+		list.add(memberVO);
+		list.add(service.shopcartList(memberVO.getMid()));
+		return memberVO_ == null ? new ResponseEntity<>(null, HttpStatus.ACCEPTED) : new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
 }
