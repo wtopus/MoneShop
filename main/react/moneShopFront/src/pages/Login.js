@@ -15,7 +15,7 @@ export default function Login() {
       .get(`http://localhost:8081/mone/member?mid=${id}&mpw=${pw}`)
       .then((resp) => {
         const result = resp.data;
-        if (result !== null) {
+        if (result !== "") {
           let user = result[0];
           let cartList = result[1];
           dispatch(setLogin(true));
