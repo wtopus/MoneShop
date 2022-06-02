@@ -22,7 +22,6 @@ export default function Login() {
           dispatch(setUser(user.mid));
           dispatch(setCart(cartList.map((el) => el.pno)));
           dispatch(notify(`${id}님 환영합니다.`));
-          //window.location.href = "/";
         } else {
           dispatch(notify(`잘못된 정보를 입력했습니다.`));
         }

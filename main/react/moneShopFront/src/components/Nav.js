@@ -13,13 +13,16 @@ function Nav() {
         <span id="name">모네#</span>
       </span>
       <div id="menu">
-        <Link to="/">상품리스트</Link>
         {isLogin ? (
-          <Link to="/shoppingcart">
-            장바구니<span id="nav-item-counter">{state.cartItems.length}</span>
-          </Link>
+          <>
+            <Link to="/">상품리스트</Link>
+            <Link to="/shoppingcart">
+              장바구니
+              <span id="nav-item-counter">{state.cartItems.length}</span>
+            </Link>
+          </>
         ) : (
-          <Link to="/login">로그인</Link>
+          <></>
         )}
       </div>
     </div>

@@ -18,17 +18,11 @@ function App() {
       <Nav />
       <Switch>
         <Route exact={true} path="/">
-          <ItemListContainer />
+          {isLogin ? <ItemListContainer /> : <Login />}
         </Route>
-        {isLogin ? (
-          <Route path="/shoppingcart">
-            <ShoppingCart />
-          </Route>
-        ) : (
-          <Route path="/login">
-            <Login />
-          </Route>
-        )}
+        <Route path="/shoppingcart">
+          {isLogin ? <ShoppingCart /> : <Login />}
+        </Route>
       </Switch>
       <NotificationCenter />
     </Router>
